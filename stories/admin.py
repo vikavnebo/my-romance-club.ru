@@ -1,3 +1,9 @@
 from django.contrib import admin
+from stories.models import *
 
-# Register your models here.
+admin.site.register(Genre)
+admin.site.register(ReleaseStatus)
+admin.site.register(RelationshipType)
+admin.site.register(Story)
+admin.site.register(Character)
+admin.site.register(Scene)
