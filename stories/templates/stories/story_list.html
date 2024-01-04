@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Истории
+{% endblock %}
+
+{% block titles %}
+<div class="header__titles">
+    <div class="first__title">Каталог историй Клуба Романтики</div>
+    <div class="second__title">Все сцены с любимыми фаворитами в одном месте!</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="cards cards__story">
+    {% for story in stories %}
+        {% if story.poster %}
+            <div class="card">
+                <a href="{{ story.url }}/">
+                    <div class="card__image story scale">
+                        <img src="/media/{{ story.poster.name }}" alt="p" />
+                    </div>
+                    {{ story }}
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

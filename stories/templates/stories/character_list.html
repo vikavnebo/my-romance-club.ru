@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+{% for character in characters %}
+    {{ character.story.name }}
+{% endfor %}
+{% endblock %}
+
+{% block titles %}
+    <div class="header__titles">
+        <div class="first__title"> </div>
+<!--	    <div class="second__title">История "{{ character.story }}"</div>	-->
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="cards cards__character">
+    {% for character in characters %}
+        {% if character.image %}
+            <div class="card">
+                <a href="{% url 'character_detail' story=character.story.url url=character.url %}">
+                    <div class="card__image character scale">
+                        <img src="/media/{{ character.image.name }}" alt="p" />
+                    </div>
+                    {{ character.name }}
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
+
