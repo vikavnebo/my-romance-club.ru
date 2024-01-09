@@ -19,7 +19,7 @@
             <div class="card">
                 <a href="{{ story.url }}/">
                     <div class="card__image story scale">
-                        <img src="/media/{{ story.poster.name }}" alt="p" />
+                        <img src="{{ story.poster.url }}" alt="{{ story.name }}" />
                     </div>
                     {{ story }}
                 </a>

@@ -2,15 +2,12 @@
 {% load static %}
 
 {% block title %}
-{% for character in characters %}
-    {{ character.story.name }}
-{% endfor %}
+{{ story_name }}
 {% endblock %}
 
 {% block titles %}
     <div class="header__titles">
-        <div class="first__title"> </div>
-<!--	    <div class="second__title">История "{{ character.story }}"</div>	-->
+        <div class="first__title"> История "{{ story_name }}" </div>
     </div>
 {% endblock %}
 
@@ -19,9 +16,9 @@
     {% for character in characters %}
         {% if character.image %}
             <div class="card">
-                <a href="{% url 'character_detail' story=character.story.url url=character.url %}">
+                <a href="{% url 'scene_list' story=character.story.url character=character.url %}">
                     <div class="card__image character scale">
-                        <img src="/media/{{ character.image.name }}" alt="p" />
+                        <img src="{{ character.image.url }}" alt="{{ character.name }}" />
                     </div>
                     {{ character.name }}
                 </a>
