@@ -1,4 +1,5 @@
 from django.views.generic import DetailView, ListView
+from django.db.models import Count
 from .models import *
 
 
@@ -6,7 +7,7 @@ class StoryView(ListView):
 	"""Список историй"""
 	model = Story
 	context_object_name = 'stories'
-	queryset = Story.objects.all().order_by('-date')
+	ordering = '-date'
 
 
 class CharacterView(ListView):
@@ -17,7 +18,7 @@ class CharacterView(ListView):
 	def get_queryset(self):
 		story_url = self.kwargs['story']
 		queryset = Character.objects.filter(story__url=story_url)
-		return queryset.order_by('name')
+		return queryset.annotate(scene_count=Count('scene')).order_by('-scene_count')
 
 	def get_context_data(self, *, object_list=None, **kwargs):
 		context = super().get_context_data(**kwargs)
