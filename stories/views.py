@@ -33,7 +33,7 @@ class SceneView(ListView):
 
 	def get_queryset(self):
 		character_url = self.kwargs['character']
-		queryset = Scene.objects.filter(characters__url=character_url)
+		queryset = Scene.objects.filter(character__url=character_url)
 		return queryset.order_by('name')
 
 	def get_context_data(self, *, object_list=None, **kwargs):
