@@ -47,9 +47,10 @@ class Story(models.Model):
 	name = models.CharField('История', max_length=160, unique=True)
 	url = models.SlugField('url', max_length=160, unique=True)
 	date = models.DateField('Дата выхода', default=date.today)
-	status = models.ManyToManyField(ReleaseStatus, verbose_name='Статус выпуска')
+	status = models.ForeignKey(ReleaseStatus, verbose_name='Статус выпуска',
+	                           null=True, on_delete=models.DO_NOTHING)
 	genre = models.ManyToManyField(Genre, verbose_name='Жанр')
-	poster = models.ImageField('Обложка', blank=True, null=True,
+	image = models.ImageField('Обложка', blank=True, null=True,
 	                           upload_to=create_story_path)
 
 	def __str__(self):
@@ -58,6 +59,7 @@ class Story(models.Model):
 	class Meta:
 		verbose_name = 'История'
 		verbose_name_plural = 'Истории'
+		ordering = ['name']
 
 
 class Character(models.Model):
@@ -75,6 +77,7 @@ class Character(models.Model):
 	class Meta:
 		verbose_name = 'Персонаж'
 		verbose_name_plural = 'Персонажи'
+		ordering = ['story__name', 'name']
 
 
 class Scene(models.Model):
@@ -92,3 +95,4 @@ class Scene(models.Model):
 	class Meta:
 		verbose_name = 'Кат-сцена'
 		verbose_name_plural = 'Кат-сцены'
+		ordering = ['story__name', 'character__name', 'id']
