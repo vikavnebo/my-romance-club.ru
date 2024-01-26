@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from .functions import *
 
 
 class Genre(models.Model):
@@ -49,7 +50,7 @@ class Story(models.Model):
 	status = models.ManyToManyField(ReleaseStatus, verbose_name='Статус выпуска')
 	genre = models.ManyToManyField(Genre, verbose_name='Жанр')
 	poster = models.ImageField('Обложка', blank=True, null=True,
-	                           upload_to=f'stories/poster')
+	                           upload_to=create_story_path)
 
 	def __str__(self):
 		return self.name
@@ -66,7 +67,7 @@ class Character(models.Model):
 	story = models.ForeignKey(Story, verbose_name='История', on_delete=models.CASCADE)
 	relationship = models.ManyToManyField(RelationshipType, verbose_name='Отношения')
 	image = models.ImageField('Изображение', blank=True, null=True,
-	                          upload_to='stories/character')
+	                          upload_to=create_character_path)
 
 	def __str__(self):
 		return self.name
@@ -78,11 +79,12 @@ class Character(models.Model):
 
 class Scene(models.Model):
 	"""Объект кадра из истории"""
-	name = models.CharField('Имя', max_length=120, default='Сцена ')
+	name = models.CharField('Имя', max_length=120, default='Сцена c ')
 	story = models.ForeignKey(Story, verbose_name='История', on_delete=models.CASCADE)
-	characters = models.ManyToManyField(Character, verbose_name='Персонажи')
+	character = models.ForeignKey(Character, verbose_name='Персонаж',
+	                              on_delete=models.CASCADE, null=True)
 	image = models.ImageField('Изображение', blank=True, null=True,
-	                          upload_to='stories/scenes')
+	                          upload_to=create_scenes_path)
 
 	def __str__(self):
 		return self.name
