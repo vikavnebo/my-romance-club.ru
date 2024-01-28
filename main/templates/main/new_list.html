@@ -10,6 +10,17 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="cards">
+    {% for new in news %}
+        <div class="card">
+            <a href="{% url 'new_detail' pk=new.pk %}">
+                <div class="card__image">
+                    <img src="{{ new.image.url }}" alt="{{ new.title }}"/>
+                </div>
+                {{ new }}
+            </a>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
 
