@@ -10,17 +10,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="cards">
+<div class="cards cards__new">
     {% for new in news %}
-        <div class="card">
-            <a href="{% url 'new_detail' pk=new.pk %}">
-                <div class="card__image">
-                    <img src="{{ new.image.url }}" alt="{{ new.title }}"/>
-                </div>
-                {{ new }}
-            </a>
+        <div class="card card_bg">
+            <div class="card__image new">
+                <a href="{% url 'new_detail' pk=new.pk %}">
+                <img class="new_image" src="{{ new.image.url }}" alt="{{ new.title }}"/>
+                </a>
+            </div>
+            <div class="title_and_date">
+                <a href="{% url 'new_detail' pk=new.pk %}">
+                    <p class="title">{{ new }}</p>
+                </a>
+                <p class="date">{{ new.date }}</p>
+            </div>
+
         </div>
     {% endfor %}
 </div>
 {% endblock %}
-
