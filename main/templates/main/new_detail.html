@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/base.html' %}
 
-</body>
-</html>
+{% block title %}
+{{ character_name }}
+{% endblock %}
+
+{% block titles %}
+    <div class="header__titles">
+        <div class="first__title">{{ new.title }}</div>
+    <!--    <div class="second__title">{{ new.date }}</div>-->
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="cards cards__scene">
+        <div class="card">
+            <div class="card__image scene">
+                <img class="image" src="{{ new.image.url }}" alt="{{ new.name }}" />
+            </div>
+            {{ new.text }}
+        </div>
+    </div>
+{% endblock %}
