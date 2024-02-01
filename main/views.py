@@ -17,10 +17,22 @@ class NewView(ListView):
 class NewDetail(DetailView):
 	"""Вывод конкретной истории"""
 	model = New
-	context_object_name = 'news'
+	context_object_name = 'new'
 
 	def get_queryset(self):
 		return New.objects.filter(pk=self.kwargs['pk'], draft=False)
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+
+		# context['story_name'] = New.objects.get(url=self.kwargs['story']).name
+		context['new_title'] = New.objects.get(pk=self.kwargs['pk'], draft=False).title
+
+		context['breadcrumbs'] = (
+			{'name': 'Новости', 'url': f"/news"},
+			{'name': context['new_title'], 'url': f"/news/{self.kwargs['pk']}"},
+		)
+		return context
 
 
 def get_about_page(request):
@@ -30,8 +42,8 @@ def get_about_page(request):
 def page_not_found(request, exception):
 	return HttpResponseNotFound(
 		'''<h1>
-		Страница не существует. Вы можете:
-		- перейти в <a href="https://my-romance-club.ru/">каталог историй</a>
+		Страница не существует.Вы можете:
+		- перейти в <a href="https://my-romance-club.ru/stories">каталог историй</a>
 		- прочитать подробнее <a href="https://my-romance-club.ru/about">об игре</a>
 		- узнать последние <a href="https://my-romance-club.ru/news">новости</a>
 		</h1>''')
