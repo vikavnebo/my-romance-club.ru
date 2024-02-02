@@ -5,7 +5,7 @@ html {
 *,
 *::after;
 *::before {
-    box-sizing: border-box;
+    box-shadow: inherit;
 }
 
 a {
@@ -14,7 +14,8 @@ a {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
+    sans-serif;
     background: #E7E7E7;
 }
 

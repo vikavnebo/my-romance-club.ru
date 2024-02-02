@@ -23,12 +23,15 @@ INTERNAL_IPS = [
 INSTALLED_APPS = [
     'main.apps.MainConfig',
     'stories.apps.StoriesConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +65,12 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
@@ -123,6 +132,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'stories/static',
 
 ]
+
+STATIC_ROOT = BASE_DIR / 'static'
+SASS_PROCESSOR_ROOT = STATIC_ROOT
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
