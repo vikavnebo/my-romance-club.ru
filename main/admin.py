@@ -10,6 +10,6 @@ class NewAdmin(admin.ModelAdmin):
 	list_filter = ('date',)
 
 
-admin.site.register(File)
+admin.site.register(NewsFile)
 admin.site.register(New, NewAdmin)
 

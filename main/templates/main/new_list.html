@@ -15,7 +15,7 @@
         <div class="card card_bg">
             <div class="card__image new">
                 <a href="{% url 'new_detail' pk=new.pk %}">
-                <img class="new_image" src="{{ new.image.url }}" alt="{{ new.title }}"/>
+                <img class="new_image" src="{{ new.image.file.url}}" alt="{{ new.title }}"/>
                 </a>
             </div>
             <div class="title_and_date">
@@ -29,3 +29,4 @@
     {% endfor %}
 </div>
 {% endblock %}
+

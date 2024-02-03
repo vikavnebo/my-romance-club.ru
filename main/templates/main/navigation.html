@@ -1,0 +1,34 @@
+{% if page_obj.has_other_pages %}
+    <nav class="list-pages">
+        <ul class="page">
+            {% if page_obj.has_previous %}
+                 <li class="page__btn btn__bg">
+                     <span class="material-icons">
+                        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </span>
+                 </li>
+            {% endif %}
+
+            {% for p in paginator.page_range %}
+                {% if page_obj.number == p %}
+                    <li class="page__num page-num-selected">
+                        {{ p }}
+                    </li>
+                {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                    <li class="page__num">
+                        <a href="?page={{ p }}">{{ p }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                 <li class="page__btn">
+                     <span class="material-icons">
+                        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </span>
+                 </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+

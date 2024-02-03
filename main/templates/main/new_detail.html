@@ -7,7 +7,6 @@
 {% block titles %}
     <div class="header__titles">
         <div class="first__title">{{ new.title }}</div>
-    <!--    <div class="second__title">{{ new.date }}</div>-->
     </div>
 {% endblock %}
 
@@ -15,7 +14,7 @@
     <div class="cards cards__scene">
         <div class="card">
             <div class="card__image scene">
-                <img class="image" src="{{ new.image.url }}" alt="{{ new.name }}" />
+                <img class="image" src="{{ new.image.file.url}}" alt="{{ new.name }}" />
             </div>
             {{ new.text }}
         </div>

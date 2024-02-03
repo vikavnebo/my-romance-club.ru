@@ -2,10 +2,15 @@ html {
     box-sizing: border-box;
 }
 
+:root {
+    --primary: #951CA6;
+    --greyLight: #E7E7E7;
+}
+
 *,
-*::after;
-*::before {
-    box-shadow: inherit;
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 a {
@@ -14,9 +19,10 @@ a {
 }
 
 body {
-    font-family: 'Montserrat';
-    sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: #E7E7E7;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .header {
@@ -35,8 +41,7 @@ body {
 }
 
 .menu {
-    background: linear-gradient(94deg, 
-                #6F00FC 0%, 
+    background: linear-gradient(94deg, #6F00FC 0%, 
                 rgba(170.65, 7.22, 247.56, 0.56) 49%, 
                 rgba(224.19, 50.44, 206.81, 0.34) 79%, 
                 rgba(198.69, 28.98, 110.44, 0.65) 100%); 
@@ -275,4 +280,39 @@ a:hover {
 .breadcrumbs__link:link {
     font-size: 18px;
     font-weight: 500;
+}
+
+.list-pages {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 40px;
+}
+
+.page {
+  list-style-type: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+
+  &__num,
+  &__btn,
+  &__dots {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 8px 20px;
+    min-height: 100%;
+    font-size: 1.4rem;
+    border-radius: 12px;
+  }
+}
+
+.page-num-selected {
+	background: var(--primary);
+	color: white;
 }

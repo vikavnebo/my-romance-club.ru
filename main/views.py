@@ -9,6 +9,7 @@ class NewView(ListView):
 	model = New
 	context_object_name = 'news'
 	allow_empty = False
+	paginate_by = 6
 
 	def get_queryset(self):
 		return New.objects.filter(draft=False)
@@ -25,7 +26,6 @@ class NewDetail(DetailView):
 	def get_context_data(self, *, object_list=None, **kwargs):
 		context = super().get_context_data(**kwargs)
 
-		# context['story_name'] = New.objects.get(url=self.kwargs['story']).name
 		context['new_title'] = New.objects.get(pk=self.kwargs['pk'], draft=False).title
 
 		context['breadcrumbs'] = (
@@ -43,7 +43,8 @@ def page_not_found(request, exception):
 	return HttpResponseNotFound(
 		'''<h1>
 		Страница не существует.Вы можете:
-		- перейти в <a href="https://my-romance-club.ru/stories">каталог историй</a>
-		- прочитать подробнее <a href="https://my-romance-club.ru/about">об игре</a>
-		- узнать последние <a href="https://my-romance-club.ru/news">новости</a>
+		- перейти в <a href="https://my-romance-club.ru/">каталог историй</a>
+		- прочитать подробнее <a href="https://my-romance-club.ru/about/">об игре</a>
+		- узнать последние <a href="https://my-romance-club.ru/news/">новости</a>
 		</h1>''')
+
