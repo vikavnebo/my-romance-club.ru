@@ -17,7 +17,7 @@
         {% if story.image %}
             <div class="card">
                 <a href="{{ story.url }}/">
-                    <div class="card__image story scale">
+                    <div class="card__image card__story scale">
                         <img src="{{ story.image.url }}" alt="{{ story.name }}" />
                     </div>
                     {{ story }}
@@ -27,3 +27,4 @@
     {% endfor %}
 </div>
 {% endblock %}
+

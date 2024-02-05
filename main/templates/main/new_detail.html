@@ -7,16 +7,24 @@
 {% block titles %}
     <div class="header__titles">
         <div class="first__title">{{ new.title }}</div>
+	<div class="second__title">Дата публикации: {{ new.date }}</div>
     </div>
 {% endblock %}
 
 {% block content %}
-    <div class="cards cards__scene">
-        <div class="card">
-            <div class="card__image scene">
-                <img class="image" src="{{ new.image.file.url}}" alt="{{ new.name }}" />
+    <div class="detail">
+        <div class="detail__card">
+            <div class="detail__title">
+                {{ new.title }}
             </div>
-            {{ new.text }}
+            <div class="detail__content">
+                <div class="detail__image">
+                    <img class="image image__detail" src="{{ new.image.file.url }}" alt="{{ new.name }}" />
+                </div>
+                <div class="detail__text">
+                    {{ new.text }}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

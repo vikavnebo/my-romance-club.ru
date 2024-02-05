@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load sass_tags %}
 {% load static %}
 <html lang="en">
 <head>
@@ -9,9 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="{% sass_src 'main/css/main.scss' %}" rel="stylesheet" type="text/css"/>
-    <link href="{% static 'main/css/main.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}">
 </head>
 <body>
     <header class="header">
@@ -35,11 +33,12 @@
     </header>
     <main>
         {% include 'main/breadcrumbs.html' %}
-        
+
         {% block content %}
         {% endblock %}
-	
-	{% include 'main/navigation.html' %}
+
+        {% include 'main/navigation.html' %}
     </main>
 </body>
 </html>
+

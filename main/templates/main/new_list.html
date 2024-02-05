@@ -13,9 +13,9 @@
 <div class="cards cards__new">
     {% for new in news %}
         <div class="card card_bg">
-            <div class="card__image new">
+            <div class="card__image card__new">
                 <a href="{% url 'new_detail' pk=new.pk %}">
-                <img class="new_image" src="{{ new.image.file.url}}" alt="{{ new.title }}"/>
+                <img class="image" src="{{ new.image.file.url}}" alt="{{ new.title }}"/>
                 </a>
             </div>
             <div class="title_and_date">

@@ -15,10 +15,11 @@
     <div class="cards cards__scene">
         {% for scene in scenes %}
 	    <div class="card">
-                <div class="card__image scene">
+                <div class="card__image card__scene">
                     <img class="image" src="{{ scene.image.url }}" alt="{{ character.name }}" />
                 </div>
 	    </div>
         {% endfor %}
     </div>
 {% endblock %}
+
