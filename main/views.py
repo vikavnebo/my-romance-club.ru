@@ -29,8 +29,8 @@ class NewDetail(DetailView):
 		context['new_title'] = New.objects.get(pk=self.kwargs['pk'], draft=False).title
 
 		context['breadcrumbs'] = (
-			{'name': 'Новости', 'url': f"/news"},
-			{'name': context['new_title'], 'url': f"/news/{self.kwargs['pk']}"},
+			{"name": "Новости", "url": "/news"},
+			{"name": context['new_title'], "url": f"/news/{self.kwargs['pk']}"},
 		)
 		return context
 
@@ -40,11 +40,4 @@ def get_about_page(request):
 
 
 def page_not_found(request, exception):
-	return HttpResponseNotFound(
-		'''<h1>
-		Страница не существует.Вы можете:
-		- перейти в <a href="https://my-romance-club.ru/">каталог историй</a>
-		- прочитать подробнее <a href="https://my-romance-club.ru/about/">об игре</a>
-		- узнать последние <a href="https://my-romance-club.ru/news/">новости</a>
-		</h1>''')
-
+	return render(request, 'main/page_404.html')

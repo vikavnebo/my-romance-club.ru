@@ -1,3 +1,9 @@
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/navigation.css' %}">
+{% endblock %}
+
 {% if page_obj.has_other_pages %}
     <nav class="list-pages">
         <ul class="page">

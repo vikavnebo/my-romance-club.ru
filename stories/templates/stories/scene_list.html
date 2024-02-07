@@ -12,14 +12,16 @@
 {% endblock %}
 
 {% block content %}
-    <div class="cards cards__scene">
+    <ul class="cards cards__scene">
         {% for scene in scenes %}
-	    <div class="card">
-                <div class="card__image card__scene">
+	<li class="card">
+            <div class=" card__image card__scene">
+                <a href="{{ scene.image.url }}">
                     <img class="image" src="{{ scene.image.url }}" alt="{{ character.name }}" />
-                </div>
-	    </div>
+                </a>
+            </div>
+        </li>
         {% endfor %}
-    </div>
+    </ul>
 {% endblock %}
 

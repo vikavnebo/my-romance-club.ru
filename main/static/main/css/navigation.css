@@ -1,0 +1,32 @@
+.list-pages {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 40px;
+}
+
+.page {
+    list-style-type: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+
+.page__btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 8px 20px;
+    min-height: 100%;
+    font-size: 1.4rem;
+    border-radius: 12px;
+}
+
+.page-num-selected {
+    background: var(--primary);
+    color: white;
+}
+
