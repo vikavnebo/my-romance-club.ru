@@ -16,14 +16,19 @@
         <div class="detail__card">
             <div class="detail__content">
                 <div class="detail__image">
-                    <img class="image image__detail" src="{{ new.image.file.url }}" alt="{{ new.name }}" />
+                    <img class="image__detail" src="{{ new.image.file.url}}" alt="{{ new.name }}" />
                 </div>
-                <div class="title_and_text">
-                    <div class="detail__title">
-                        <span class="link">{{ new.title }}</span>
+                <div class="container">
+                    <div>
+                        <div class="detail__title">
+                            <span>{{ new.title }}</span>
+                        </div>
+                        <div class="detail__text">
+                            <span>{{ new.text }}</span>
+                        </div>
                     </div>
-                    <div class="detail__text">
-                        <span class="link">{{ new.text }}</span>
+                    <div class="detail__date">
+                        <span>{{ new.date }}</span>
                     </div>
                 </div>
             </div>

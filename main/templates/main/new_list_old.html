@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block titles %}
+<div class="header__titles">
+    <div class="first__title">Свежие новости Клуба Романтики</div>
+    <div class="second__title">Расписание выхода историй и игровых событий</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="cards cards__new">
+    {% for new in news %}
+        <div class="card card_bg">
+            <div class="card__image card__new">
+                <a href="{% url 'new_detail' pk=new.pk %}">
+                <img class="image" src="{{ new.image.file.url}}" alt="{{ new.title }}"/>
+                </a>
+            </div>
+            <div class="title_and_date">
+                <a href="{% url 'new_detail' pk=new.pk %}">
+                    <p class="title">{{ new }}</p>
+                </a>
+                <p class="date">{{ new.date }}</p>
+            </div>
+
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

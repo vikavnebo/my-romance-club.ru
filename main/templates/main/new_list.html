@@ -10,21 +10,29 @@
 {% endblock %}
 
 {% block content %}
-<div class="cards cards__new">
-    {% for new in news %}
-        <div class="card card_bg">
-            <div class="card__image card__new">
-                <a href="{% url 'new_detail' pk=new.pk %}">
-                <img class="image" src="{{ new.image.file.url}}" alt="{{ new.title }}"/>
-                </a>
-            </div>
-            <div class="title_and_date">
-                <a href="{% url 'new_detail' pk=new.pk %}">
-                    <p class="title">{{ new }}</p>
-                </a>
-                <p class="date">{{ new.date }}</p>
-            </div>
+<div class="detail">
+    {% include 'main/navigation.html' %}
 
+    {% for new in news %}
+        <div class="detail__card">
+            <div class="detail__content">
+                <div class="detail__image">
+                    <img class="image__detail" src="{{ new.image.file.url}}" alt="{{ new.name }}" />
+                </div>
+                <div class="container">
+                    <div>
+                        <div class="detail__title">
+                            <span>{{ new.title }}</span>
+                        </div>
+                        <div class="detail__text">
+                            <span>{{ new.text }}</span>
+                        </div>
+                    </div>
+                    <div class="detail__date">
+                        <span>{{ new.date }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endfor %}
 </div>
