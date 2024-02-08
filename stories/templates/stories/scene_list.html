@@ -14,10 +14,12 @@
 {% block content %}
     <ul class="cards cards__scene">
         {% for scene in scenes %}
-	<li class="card">
+	    <li class="card">
             <div class=" card__image card__scene">
                 <a href="{{ scene.image.url }}">
-                    <img class="image" src="{{ scene.image.url }}" alt="{{ character.name }}" />
+                    <div class="img">
+                        <img class="image" src="{{ scene.image.url }}" alt="{{ character.name }}" />
+                    </div>>
                 </a>
             </div>
         </li>
