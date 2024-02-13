@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: black;
     padding-top: 40px;
-    padding-bottom: 200px;
+    padding-bottom: 400px;
     gap: 80px;
 }
 
@@ -76,7 +76,7 @@
 
 .block {
     background:white;
-    transform: skew(0deg, -5deg);
+    transform: skew(0deg, -10deg);
     position: relative;
     top: 50px;
 }
@@ -92,7 +92,7 @@
 }
 
 .transform {
-    transform: skew(0deg, 5deg);
+    transform: skew(0deg, 10deg);
 }
 
 .down_60 {

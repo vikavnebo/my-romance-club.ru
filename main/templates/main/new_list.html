@@ -15,11 +15,12 @@
 
     {% for new in news %}
         <div class="detail__card">
+            <a href="{% url 'new_detail' pk=new.pk %}">
             <div class="detail__content">
-                <div class="detail__image">
+                <div class="detail__image detail__scale">
                     <img class="image__detail" src="{{ new.image.file.url}}" alt="{{ new.name }}" />
                 </div>
-                <div class="container">
+                <div class="detail__container">
                     <div>
                         <div class="detail__title">
                             <span>{{ new.title }}</span>
@@ -33,6 +34,7 @@
                     </div>
                 </div>
             </div>
+            </a>
         </div>
     {% endfor %}
 </div>
