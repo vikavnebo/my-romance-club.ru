@@ -4,8 +4,12 @@ from django.views.generic import DetailView, ListView
 from .models import *
 
 
-def page_not_found(request, exception):
-	return render(request, 'main/page_404.html')
+def handler404(request, exception):
+	return render(request, 'main/page_404.html', status=404)
+
+
+def handler500(request):
+	return render(request, 'main/page_500.html', status=500)
 
 
 def get_about_page(request):
