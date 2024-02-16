@@ -20,3 +20,17 @@ def create_scenes_path(instance, filename):
 	number = instance.name.split()[-1]
 	filename = f'{character}_{number}.{image_type}'
 	return f'stories/{story}/{character}/scenes/{filename}'
+
+
+def create_breadcrumbs(titles: tuple, urls: tuple, path='/') -> list:
+	breadcrumbs = []
+	i = 0
+	for title in titles:
+		item = {}
+		if breadcrumbs:
+			path += urls[i] + '/'
+			i += 1
+		item['name'] = title
+		item['url'] = path
+		breadcrumbs.append(item)
+	return breadcrumbs

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.views.generic import DetailView, ListView
+from stories.functions import create_breadcrumbs
+
 from .models import *
 
 
@@ -40,8 +42,9 @@ class NewDetail(DetailView):
 
 		context['new_title'] = New.objects.get(pk=self.kwargs['pk'], draft=False).title
 
-		context['breadcrumbs'] = (
-			{'name': 'Новости', 'url': f"/news"},
-			{'name': context['new_title'], 'url': f"/news/{self.kwargs['pk']}"},
-		)
+		titles = ('Новости', context['new_title'])
+		urls = tuple(self.request.path[1:-1].split('/')[1:])
+
+		context['breadcrumbs'] = create_breadcrumbs(titles, urls, path='/news/')
+
 		return context

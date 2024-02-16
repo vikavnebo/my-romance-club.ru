@@ -1,5 +1,7 @@
 from django.views.generic import DetailView, ListView
 from django.db.models import Count
+from .functions import create_breadcrumbs
+
 from .models import *
 
 
@@ -26,10 +28,11 @@ class CharacterView(ListView):
 		context['story_name'] = Story.objects.get(url=self.kwargs['story']).name
 		context['story_url'] = Story.objects.get(url=self.kwargs['story']).url
 
-		context['breadcrumbs'] = (
-			{"name": "Истории", "url": ""},
-			{"name": context['story_name'], "url": f"/{context['story_url']}"},
-		)
+		titles = ('Истории', context['story_name'])
+		urls = tuple(self.request.path[1:-1].split('/'))
+
+		context['breadcrumbs'] = create_breadcrumbs(titles, urls)
+
 		return context
 
 
@@ -49,9 +52,10 @@ class SceneView(ListView):
 		context['story_name'] = Story.objects.get(url=self.kwargs['story']).name
 		context['character_name'] = Character.objects.get(url=self.kwargs['character']).name
 
-		context['breadcrumbs'] = (
-			{"name": "Истории", "url": ""},
-			{"name": context['story_name'], "url": f"/{self.kwargs['story']}"},
-			{"name": context['character_name'], "url": f"/{self.kwargs['story']}/{self.kwargs['character']}"},
-		)
+		titles = ('Истории', context['story_name'], context['character_name'])
+		urls = tuple(self.request.path[1:-1].split('/'))
+
+		context['breadcrumbs'] = create_breadcrumbs(titles, urls)
+
 		return context
+

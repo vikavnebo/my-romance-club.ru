@@ -64,9 +64,9 @@ class Story(models.Model):
 
 class Character(models.Model):
 	"""Объект персонажа"""
-	name = models.CharField('Имя', max_length=120, unique=True)
-	url = models.SlugField('url', max_length=120, unique=True)
-	story = models.ForeignKey(Story, verbose_name='История', on_delete=models.CASCADE)
+	name = models.CharField('Имя', max_length=120)
+	url = models.SlugField('url', max_length=120)
+	story = models.ForeignKey(Story, verbose_name='История', on_delete=models.CASCADE, null=True)
 	relationship = models.ManyToManyField(RelationshipType, verbose_name='Отношения')
 	image = models.ImageField('Изображение', blank=True, null=True,
 	                          upload_to=create_character_path)
