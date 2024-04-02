@@ -5,17 +5,32 @@ from stories.functions import create_breadcrumbs
 
 from .models import *
 
+menu = [
+	{'title': "Истории", 'url_name': 'story_list'},
+        {'title': "Об игре", 'url_name': 'about'},
+        {'title': "Новости", 'url_name': 'new_list'}
+]
+
 
 def handler404(request, exception):
-	return render(request, 'main/page_404.html', status=404)
+	context = {
+		'menu': menu
+	}
+	return render(request, 'main/page_404.html', context=context, status=404)
 
 
 def handler500(request):
-	return render(request, 'main/page_500.html', status=500)
+	context = {
+		'menu': menu
+	}
+	return render(request, 'main/page_500.html', context=context, status=500)
 
 
 def get_about_page(request):
-	return render(request, 'main/about.html')
+        context = {
+                'menu': menu
+        }
+        return render(request, 'main/about.html', context=context)
 
 
 class NewView(ListView):

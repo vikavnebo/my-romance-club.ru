@@ -3,6 +3,7 @@ from django.db.models import Count
 from .functions import create_breadcrumbs
 
 from .models import *
+from main.views import menu
 
 
 class StoryView(ListView):
@@ -10,6 +11,9 @@ class StoryView(ListView):
 	model = Story
 	context_object_name = 'stories'
 	ordering = '-date'
+	context = {
+		'menu': menu
+	}
 
 
 class CharacterView(ListView):
@@ -44,7 +48,7 @@ class SceneView(ListView):
 	def get_queryset(self):
 		character_url = self.kwargs['character']
 		queryset = Scene.objects.filter(character__url=character_url)
-		return queryset.order_by('name')
+		return queryset.order_by('scene_number', 'name')
 
 	def get_context_data(self, *, object_list=None, **kwargs):
 		context = super().get_context_data(**kwargs)

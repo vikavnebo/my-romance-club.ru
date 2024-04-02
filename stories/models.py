@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from datetime import date
 from .functions import *
 
@@ -55,6 +56,9 @@ class Story(models.Model):
 
 	def __str__(self):
 		return self.url
+	
+	def get_absolute_url(self):
+		return reverse('character_list', kwargs={'story': self.url})
 
 	class Meta:
 		verbose_name = 'История'
@@ -74,6 +78,9 @@ class Character(models.Model):
 	def __str__(self):
 		return self.url
 
+	def get_absolute_url(self):
+		return reverse('scene_list', kwargs={'story': self.story.url, 'character': self.url})
+
 	class Meta:
 		verbose_name = 'Персонаж'
 		verbose_name_plural = 'Персонажи'
@@ -86,9 +93,9 @@ class Scene(models.Model):
 	story = models.ForeignKey(Story, verbose_name='История', on_delete=models.CASCADE)
 	character = models.ForeignKey(Character, verbose_name='Персонаж',
 	                              on_delete=models.CASCADE, null=True)
-#	season = models.IntegerField('Сезон', default=1)
-#	chapter = models.IntegerField('Серия', default=1)
-#	scene_number = models.IntegerField('Номер сцены', default=1)
+	season = models.IntegerField('Сезон', default=1)
+	chapter = models.IntegerField('Серия', default=1)
+	scene_number = models.IntegerField('Номер сцены', default=1)
 	image = models.ImageField('Изображение', blank=True, null=True,
 	                          upload_to=create_scenes_path)
 

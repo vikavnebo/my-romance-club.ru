@@ -158,9 +158,9 @@
 <!--        </form>-->
 <!--      </div>-->
       <div id="navigation">
-        <a class="navigation" href="{% url 'story_list' %}">Каталог историй</a>
-        <a class="navigation" href="{% url 'about' %}">Об игре</a>
-        <a class="navigation" href="{% url 'new_list' %}">Новости</a>
+	{% for menu_item in menu %}
+          <a class="navigation" href="{% url menu_item.url_name %}">{{menu_item.title}}</a>
+	{% endfor %}
       </div>
     </div>
     </div>

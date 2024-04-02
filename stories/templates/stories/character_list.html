@@ -15,7 +15,7 @@
     {% for character in characters %}
         {% if character.image %}
             <div class="card">
-                <a href="{% url 'scene_list' story=story_url character=character.url %}">
+                <a href="{{ character.get_absolute_url }}">
                     <div class="card__image card__character scale">
                         <img src="{{ character.image.url }}" alt="{{ character.name }}" />
                     </div>

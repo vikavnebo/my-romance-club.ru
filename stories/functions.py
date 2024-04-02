@@ -17,8 +17,8 @@ def create_scenes_path(instance, filename):
 	image_type = filename.split('.')[-1]
 	story = instance.story.url
 	character = instance.character.url
-	number = instance.name.split()[-1]
-#	number = instance.scene_number
+#	number = instance.name.split()[-1]
+	number = instance.scene_number
 	filename = f'{character}_{number}.{image_type}'
 	return f'stories/{story}/{character}/scenes/{filename}'
 

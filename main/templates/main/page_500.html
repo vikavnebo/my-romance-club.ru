@@ -143,7 +143,7 @@
       </ul>
     </div>
 
-      <div id="main-content">
+    <div id="main-content">
       <h1>Страница не найдена :(.</h1>
 
       <p>К сожалению, страница, которую вы искали, не найдена.
@@ -153,12 +153,12 @@
         Или перейдите в основные разделы нашего сайта:</p>
 
       <div id="navigation">
-        <a class="navigation" href="{% url 'story_list' %}">Каталог историй</a>
-        <a class="navigation" href="{% url 'about' %}">Об игре</a>
-        <a class="navigation" href="{% url 'new_list' %}">Новости</a>
+        {% for menu_item in menu %}
+          <a class="navigation" href="{% url menu_item.url_name %}">{{menu_item.title}}</a>        
+	{% endfor %}
       </div>
     </div>
-    </div>
+  </div>
   <script type="text/javascript" src="{% static 'main/js/page_404.js' %}"></script>
 </body>
 </html>

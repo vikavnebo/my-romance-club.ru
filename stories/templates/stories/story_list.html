@@ -16,7 +16,7 @@
     {% for story in stories %}
         {% if story.image %}
             <div class="card">
-                <a href="{% url 'character_list' story=story.url %}">
+                <a href="{{ story.get_absolute_url }}">
                     <div class="card__image card__story scale">
                         <img src="{{ story.image.url }}" alt="{{ story.name }}" />
                     </div>

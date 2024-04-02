@@ -19,15 +19,11 @@
         <div class="menu__wrapper">
             <nav class="menu">
                 <ul class="menu__list">
+		    {% for menu_item in menu %}
                     <li class="menu__item">
-                        <a href="{% url 'story_list' %}">Истории</a>
+                        <a href="{% url menu_item.url_name %}">{{menu_item.title}}</a>
                     </li>
-                    <li class="menu__item">
-                        <a href="{% url 'about' %}">Об игре</a>
-                    </li>
-                    <li class="menu__item">
-                        <a href="{% url 'new_list' %}">Новости</a>
-                    </li>
+		    {% endfor %}
                 </ul>
             </nav>
         </div>
