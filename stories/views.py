@@ -11,9 +11,10 @@ class StoryView(ListView):
 	model = Story
 	context_object_name = 'stories'
 	ordering = '-date'
-	context = {
-		'menu': menu
-	}
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['menu'] = menu
+		return context
 
 
 class CharacterView(ListView):
@@ -36,6 +37,7 @@ class CharacterView(ListView):
 		urls = tuple(self.request.path[1:-1].split('/'))
 
 		context['breadcrumbs'] = create_breadcrumbs(titles, urls)
+		context['menu'] = menu
 
 		return context
 
@@ -60,6 +62,7 @@ class SceneView(ListView):
 		urls = tuple(self.request.path[1:-1].split('/'))
 
 		context['breadcrumbs'] = create_breadcrumbs(titles, urls)
+		context['menu'] = menu
 
 		return context
 

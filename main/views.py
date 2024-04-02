@@ -43,6 +43,11 @@ class NewView(ListView):
 	def get_queryset(self):
 		return New.objects.filter(draft=False)
 
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['menu'] = menu
+		return context
+
 
 class NewDetail(DetailView):
 	"""Вывод конкретной истории"""
@@ -61,5 +66,6 @@ class NewDetail(DetailView):
 		urls = tuple(self.request.path[1:-1].split('/')[1:])
 
 		context['breadcrumbs'] = create_breadcrumbs(titles, urls, path='/news/')
+		context['menu'] = menu
 
 		return context
