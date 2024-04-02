@@ -22,7 +22,7 @@ class SceneAdmin(admin.ModelAdmin):
         list_display = ('name', 'story', 'character', 'image')
         list_display_links = ('name',)
         search_fields = ('name', 'story', 'character')
-        list_editable = ('story', 'character','image')
+        list_editable = ('story', 'character', 'image')
         list_filter = ('story', 'character')
 
 

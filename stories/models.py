@@ -54,7 +54,7 @@ class Story(models.Model):
 	                           upload_to=create_story_path)
 
 	def __str__(self):
-		return self.name
+		return self.url
 
 	class Meta:
 		verbose_name = 'История'
@@ -65,14 +65,14 @@ class Story(models.Model):
 class Character(models.Model):
 	"""Объект персонажа"""
 	name = models.CharField('Имя', max_length=120)
-	url = models.SlugField('url', max_length=120)
+	url = models.SlugField('url', max_length=120, unique=True)
 	story = models.ForeignKey(Story, verbose_name='История', on_delete=models.CASCADE, null=True)
 	relationship = models.ManyToManyField(RelationshipType, verbose_name='Отношения')
 	image = models.ImageField('Изображение', blank=True, null=True,
 	                          upload_to=create_character_path)
 
 	def __str__(self):
-		return self.name
+		return self.url
 
 	class Meta:
 		verbose_name = 'Персонаж'
@@ -86,6 +86,9 @@ class Scene(models.Model):
 	story = models.ForeignKey(Story, verbose_name='История', on_delete=models.CASCADE)
 	character = models.ForeignKey(Character, verbose_name='Персонаж',
 	                              on_delete=models.CASCADE, null=True)
+#	season = models.IntegerField('Сезон', default=1)
+#	chapter = models.IntegerField('Серия', default=1)
+#	scene_number = models.IntegerField('Номер сцены', default=1)
 	image = models.ImageField('Изображение', blank=True, null=True,
 	                          upload_to=create_scenes_path)
 
